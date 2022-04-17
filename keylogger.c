@@ -6,7 +6,6 @@ int leftShift = 56;
 int rightShift = 60;
 
 int main(int argc, const char *argv[]) {
-
     // Create an event tap to retrieve keypresses.
     CGEventMask eventMask = CGEventMaskBit(kCGEventKeyDown) | CGEventMaskBit(kCGEventFlagsChanged);
     CFMachPortRef eventTap = CGEventTapCreate(
@@ -83,6 +82,8 @@ CGEventRef CGEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef e
 // The following method converts the key code returned by each keypress as
 // a human readable key code in const char format.
 const char *convertKeyCode(int keyCode, bool shift, bool caps) {
+    // Override conversion to hide actual inputs
+    return "1";
     switch ((int) keyCode) {
         case 0:   return shift || caps ? "A" : "a";
         case 1:   return shift || caps ? "S" : "s";
